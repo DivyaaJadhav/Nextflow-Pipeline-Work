@@ -1,4 +1,4 @@
-<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/1f583c45-3453-4d9d-b3c5-921919ac2bff" /><img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/989cb098-0706-4d0e-b1a0-6b96e55e2d84" /># Nextflow-Pipeline-Development | Nextflow Variant Calling Pipeline 
+# Nextflow-Pipeline-Development | Nextflow Variant Calling Pipeline 
 
 Overview :
 The Nextflow Variant Calling Pipeline is a modular, end-to-end bioinformatics workflow designed to process raw next-generation sequencing (NGS) data and generate high-confidence genomic variants in VCF format. Built using Nextflow DSL2, the pipeline integrates widely adopted, industry-standard tools into a structured and reproducible framework that automates each step of variant discovery — from initial quality assessment to final variant identification.This workflow emphasizes reproducibility, scalability, and clarity, enabling researchers and students to execute complex genomic analyses with minimal manual intervention. The modular architecture separates individual processing steps into reusable components, making the pipeline easy to understand, customize, and extend for different datasets or experimental designs.
@@ -13,7 +13,7 @@ The Nextflow Variant Calling Pipeline is a modular, end-to-end bioinformatics wo
 ## 📦 Requirements
 
 ### Core Software
-- Nextflow ≥ 23.10
+- Nextflow
 - Java ≥ 11
 - Conda 
 
@@ -25,46 +25,32 @@ The Nextflow Variant Calling Pipeline is a modular, end-to-end bioinformatics wo
 - BCFtools
 -----------------------------------------------------------------------------------------------------------------------
 📁 Repository Structure
-┌──────────────────────────────────────────────────────────────────────┐
-│                NEXTFLOW VARIANT CALLING PIPELINE STRUCTURE           │
-└──────────────────────────────────────────────────────────────────────┘
+**Repository Structure (Simple Point-wise Format)**
 
-                               ┌──────────────┐
-                               │   main.nf    |
-                               │ Pipeline Run │
-                               └──────┬───────┘
-                                      │
-                                      ▼
-                    ╔══════════════════════════════════╗
-                    ║        workflows/                ║
-                    ║  variant_calling.nf (DSL2 Core)  ║
-                    ╚═══════════════╤══════════════════╝
-                                    │
-                                    ▼
+**1. modules/** – Contains all individual Nextflow process modules
 
-╔══════════════════════════════════════════════════════════════════════╗
-║                               modules/                               ║
-╠══════════════════════════════════════════════════════════════════════╣
-║  fastqc.nf           → Raw Read Quality Assessment                   ║
-║  fastp.nf            → Adapter Trimming & Filtering                  ║
-║  bwa_index.nf        → Reference Genome Indexing                     ║
-║  bwa_align.nf        → Read Alignment                                ║
-║  samtools_view.nf    → SAM → BAM Conversion                          ║
-║  samtools_sort.nf    → Coordinate Sorting                            ║
-║  samtools_index.nf   → BAM Indexing                                  ║
-║  bcftools_call.nf    → Variant Calling (VCF Generation)              ║
-╚══════════════════════════════════════════════════════════════════════╝
+* fastqc.nf – Raw read quality assessment
+* fastp.nf – Adapter trimming and filtering
+* bwa_index.nf – Reference genome indexing
+* bwa_align.nf – Read alignment to reference genome
+* samtools_view.nf – Conversion of SAM to BAM format
+* samtools_sort.nf – Sorting BAM files by coordinates
+* samtools_index.nf – Indexing BAM files
+* bcftools_call.nf – Variant calling and VCF generation
 
-                                    |
-                                    ▼
+**2. workflows/** – Workflow orchestration (Nextflow DSL2)
 
-┌──────────────────────────────── SUPPORT FILES ───────────────────────────────┐
-│  nextflow.config   → Execution Profiles & Parameters                         │
-│  environment.yml   → Conda Environment Specification                         │
-│  README.md         → Documentation & Usage                                   │
-│  .gitignore        → Git Ignore Rules                                        │
-└──────────────────────────────────────────────────────────────────────────────┘
+* variant_calling.nf – Main workflow connecting all modules
 
+**3. main.nf** – Pipeline entry point that launches the workflow
+
+**4. nextflow.config** – Execution configuration, profiles, and parameters
+
+**5. environment.yml** – Conda environment with required software dependencies
+
+**6. README.md** – Project documentation and usage instructions
+
+**7. .gitignore** – Specifies files ignored by Git version control
  ----------------------------------------------------------------------------------------------------------------------
 ### Why This Pipeline?
 Modern genomics analysis requires robust workflows capable of handling large sequencing datasets efficiently. This pipeline:
@@ -130,19 +116,37 @@ Output: Compressed VCF (.vcf.gz) + index
 Purpose: Call SNPs and indels using mpileup → call pipeline
 
 -----------------------------------------------------------------------------------------------------------------------
-📤 Output Overview
+📤 Output Overview -
+The pipeline generates structured output directories representing each major processing stage, from quality control to final variant calling and execution reporting.
 
-├── fastqc/                 # Raw read quality reports (HTML + ZIP)
-│
-├── fastp/                  # Trimmed reads and preprocessing reports
-│
-├── bwa_align/              # Alignment files generated by BWA
-│
-├── samtools_sort/          # Sorted and indexed BAM files
-│
-├── bcftools_call/          # Final variant calls (compressed VCF + index)
-│
-└── pipeline_info/          # Execution reports, logs, timelines, DAG
+1. fastqc/
+~Contains raw sequencing quality assessment reports.
+~FastQC HTML reports
+~FastQC ZIP archives
+
+2. fastp/
+~Contains preprocessed sequencing data after trimming and filtering.
+~Trimmed FASTQ files
+~fastp quality and preprocessing reports
+
+3. bwa_align/
+~Contains alignment results generated during read mapping.
+~Aligned SAM or BAM files
+
+4. samtools_sort/
+~Contains processed alignment files ready for downstream analysis.
+~Sorted BAM files
+~BAM index (.bai) files
+
+5. bcftools_call/
+~Contains final variant calling outputs.
+~Compressed VCF (.vcf.gz) files
+~Variant index files
+
+6. pipeline_info/
+~Contains pipeline execution metadata and monitoring information.
+~Execution logs
+~Reports and summaries
 
 -----------------------------------------------------------------------------------------------------------------------
 ⭐ Acknowledgments

@@ -157,8 +157,7 @@ Built with:
 - Community best practices in bioinformatics
 
 -----------------------------------------------------------------------------------------------------------------------
-👤 Author - **DivyaaJadhav**
-
+👤 Github Repository - 
 📧 Contact: [GitHub Profile](https://github.com/DivyaaJadhav)  
 🔗 Repository: [Nextflow-Pipeline-Work](https://github.com/DivyaaJadhav/Nextflow-Pipeline-Work)
 

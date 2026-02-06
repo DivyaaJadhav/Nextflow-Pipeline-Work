@@ -1,17 +1,19 @@
-nextflow.enable.dsl=2
-
 process FASTQC {
-
-    publishDir "${params.output}/fastqc", mode: 'copy'
+    tag "${sample_id}"
+    publishDir "${params.outdir}/fastqc", mode: 'copy'
 
     input:
-    path fastq_file
+    tuple val(sample_id), path(read1), path(read2)
 
     output:
-    path "*_fastqc*"
+    path "*.html", emit: html
+    path "*.zip", emit: zip
 
     script:
     """
-    ${params.fastqc_bin} ${fastq_file}
+    ${params.fastqc} \
+        -t ${task.cpus} \
+        -o . \
+        ${read1} ${read2}
     """
 }

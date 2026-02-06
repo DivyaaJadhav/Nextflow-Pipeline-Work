@@ -10,6 +10,7 @@ The Nextflow Variant Calling Pipeline is a modular, end-to-end bioinformatics wo
 - Easy deployment across local systems, HPC clusters, or cloud environments
 - Transparent configuration and execution reporting
 -----------------------------------------------------------------------------------------------------------------------
+
 ## 📦 Requirements
 
 ### Core Software
@@ -23,7 +24,9 @@ The Nextflow Variant Calling Pipeline is a modular, end-to-end bioinformatics wo
 - BWA
 - Samtools
 - BCFtools
+  
 -----------------------------------------------------------------------------------------------------------------------
+
 📁 Repository Structure
 **Repository Structure (Simple Point-wise Format)**
 
@@ -51,15 +54,20 @@ The Nextflow Variant Calling Pipeline is a modular, end-to-end bioinformatics wo
 **6. README.md** – Project documentation and usage instructions
 
 **7. .gitignore** – Specifies files ignored by Git version control
+
  ----------------------------------------------------------------------------------------------------------------------
+ 
 ### Why This Pipeline?
 Modern genomics analysis requires robust workflows capable of handling large sequencing datasets efficiently. This pipeline:
 - Minimizes manual processing errors
 - Standardizes analysis steps
 - Provides reproducible results
 - Supports scalable execution
-- Demonstrates best practices in workflow engineering
+- Demonstrates best practices in workflow engineering.
+  
 -----------------------------------------------------------------------------------------------------------------------
+
+
 📊 Pipeline Modules Explained
 
 FASTQC — Read quality analysis
@@ -71,7 +79,9 @@ BWA — Alignment
 SAMTOOLS — BAM processing
 
 BCFTOOLS — Variant detection
+
 -----------------------------------------------------------------------------------------------------------------------
+
 ### Analysis Stages Covered
 🔧 Module Descriptions
 
@@ -116,6 +126,7 @@ Output: Compressed VCF (.vcf.gz) + index
 Purpose: Call SNPs and indels using mpileup → call pipeline
 
 -----------------------------------------------------------------------------------------------------------------------
+
 📤 Output Overview -
 The pipeline generates structured output directories representing each major processing stage, from quality control to final variant calling and execution reporting.
 
@@ -149,6 +160,7 @@ The pipeline generates structured output directories representing each major pro
 ~Reports and summaries
 
 -----------------------------------------------------------------------------------------------------------------------
+
 ⭐ Acknowledgments
 
 Built with:
@@ -157,6 +169,7 @@ Built with:
 - Community best practices in bioinformatics
 
 -----------------------------------------------------------------------------------------------------------------------
+
 👤 Github Repository - 
 📧 Contact: [GitHub Profile](https://github.com/DivyaaJadhav)  
 🔗 Repository: [Nextflow-Pipeline-Work](https://github.com/DivyaaJadhav/Nextflow-Pipeline-Work)

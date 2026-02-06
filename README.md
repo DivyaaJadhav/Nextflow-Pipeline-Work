@@ -1,4 +1,4 @@
-# Nextflow-Pipeline-Development | Nextflow Variant Calling Pipeline 
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/1f583c45-3453-4d9d-b3c5-921919ac2bff" /><img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/989cb098-0706-4d0e-b1a0-6b96e55e2d84" /># Nextflow-Pipeline-Development | Nextflow Variant Calling Pipeline 
 
 Overview :
 The Nextflow Variant Calling Pipeline is a modular, end-to-end bioinformatics workflow designed to process raw next-generation sequencing (NGS) data and generate high-confidence genomic variants in VCF format. Built using Nextflow DSL2, the pipeline integrates widely adopted, industry-standard tools into a structured and reproducible framework that automates each step of variant discovery — from initial quality assessment to final variant identification.This workflow emphasizes reproducibility, scalability, and clarity, enabling researchers and students to execute complex genomic analyses with minimal manual intervention. The modular architecture separates individual processing steps into reusable components, making the pipeline easy to understand, customize, and extend for different datasets or experimental designs.
@@ -25,25 +25,45 @@ The Nextflow Variant Calling Pipeline is a modular, end-to-end bioinformatics wo
 - BCFtools
 -----------------------------------------------------------------------------------------------------------------------
 📁 Repository Structure
+┌──────────────────────────────────────────────────────────────────────┐
+│                NEXTFLOW VARIANT CALLING PIPELINE STRUCTURE           │
+└──────────────────────────────────────────────────────────────────────┘
 
-├── modules/                     # Individual Nextflow process modules
-│   ├── fastqc.nf                # Raw read quality assessment
-│   ├── fastp.nf                 # Adapter trimming and filtering
-│   ├── bwa_index.nf             # Reference genome indexing
-│   ├── bwa_align.nf             # Read alignment to reference
-│   ├── samtools_view.nf         # SAM → BAM conversion
-│   ├── samtools_sort.nf         # Coordinate sorting of BAM files
-│   ├── samtools_index.nf        # BAM indexing
-│   └── bcftools_call.nf         # Variant calling (VCF generation)
-│
-├── workflows/                   # Workflow orchestration (DSL2)
-│   └── variant_calling.nf       # Main pipeline workflow definition
-│
-├── main.nf                      # Pipeline entry point
-├── nextflow.config              # Execution profiles and parameters
-├── environment.yml              # Conda environment specification
-├── README.md                    # Project documentation
-└── .gitignore                   # Git ignore rules
+                               ┌──────────────┐
+                               │   main.nf    |
+                               │ Pipeline Run │
+                               └──────┬───────┘
+                                      │
+                                      ▼
+                    ╔══════════════════════════════════╗
+                    ║        workflows/                ║
+                    ║  variant_calling.nf (DSL2 Core)  ║
+                    ╚═══════════════╤══════════════════╝
+                                    │
+                                    ▼
+
+╔══════════════════════════════════════════════════════════════════════╗
+║                               modules/                               ║
+╠══════════════════════════════════════════════════════════════════════╣
+║  fastqc.nf           → Raw Read Quality Assessment                   ║
+║  fastp.nf            → Adapter Trimming & Filtering                  ║
+║  bwa_index.nf        → Reference Genome Indexing                     ║
+║  bwa_align.nf        → Read Alignment                                ║
+║  samtools_view.nf    → SAM → BAM Conversion                          ║
+║  samtools_sort.nf    → Coordinate Sorting                            ║
+║  samtools_index.nf   → BAM Indexing                                  ║
+║  bcftools_call.nf    → Variant Calling (VCF Generation)              ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+                                    |
+                                    ▼
+
+┌──────────────────────────────── SUPPORT FILES ───────────────────────────────┐
+│  nextflow.config   → Execution Profiles & Parameters                         │
+│  environment.yml   → Conda Environment Specification                         │
+│  README.md         → Documentation & Usage                                   │
+│  .gitignore        → Git Ignore Rules                                        │
+└──────────────────────────────────────────────────────────────────────────────┘
 
  ----------------------------------------------------------------------------------------------------------------------
 ### Why This Pipeline?

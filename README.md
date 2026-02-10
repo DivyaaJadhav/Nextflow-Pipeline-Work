@@ -67,23 +67,30 @@ Modern genomics analysis requires robust workflows capable of handling large seq
   
 -----------------------------------------------------------------------------------------------------------------------
 🚀 Clone the Repository -
+```
 git clone https://github.com/DivyaaJadhav/Nextflow-Pipeline-Work.git
 cd Nextflow-Pipeline-Work
+```
 
 🛠️ Environment Setup -
-Activate the conda environment:
+Activate the conda environment :
+```
 conda activate bnf
+```
 
 ▶️ Usage -
 Run the Pipeline
+```
 nextflow run main.nf
+```
 
 Run with Custom Parameters
+```
 nextflow run main.nf \
   --reads "data/*_{1,2}.fastq.gz" \
   --ref "reference.fa" \
   --outdir "results"
-
+```
 ---------------------------------------------------------------------------------------------------------------------------
 📊 Pipeline Modules Explained
 
